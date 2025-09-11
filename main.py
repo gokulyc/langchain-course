@@ -1,4 +1,5 @@
 from typing import List, Union
+import os
 
 from dotenv import load_dotenv
 from langchain.agents.format_scratchpad import format_log_to_str
@@ -64,6 +65,9 @@ if __name__ == "__main__":
 
     llm = ChatOpenAI(
         temperature=0,
+        model="openai/gpt-5-mini",
+        api_key=os.getenv("OPENROUTER_API_KEY"),
+        base_url="https://openrouter.ai/api/v1",
         stop=["\nObservation", "Observation"],
         callbacks=[AgentCallbackHandler()],
     )
